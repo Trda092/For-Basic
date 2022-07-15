@@ -32,9 +32,9 @@
             </tr>
             <tr v-for="(person,index) in people">
                 <td v-if="index!=isOnEdit">{{person.name}}</td>
-                <td v-else><input type="text" placeholder="Name" v-model="edtName"></td>
+                <td v-else><input type="text" placeholder="Name" v-model="edtName" value="person.name"></td>
                 <td v-if="index!=isOnEdit">{{person.age}}</td>
-                <td v-else><input type="number" placeholder="Age" v-model="edtAge"></td>
+                <td v-else><input type="number" placeholder="Age" v-model="edtAge" value="person.age"></td>
                 <td><button v-on:click="deleteData(index)">DEL</button></td>
                 <td v-if="index!=isOnEdit"><button v-on:click="editData(index)">Edit</button></td>
                 <td v-else><button v-on:click="saveEdit">Save</button></td>
@@ -67,6 +67,8 @@
                     this.people.splice(index,1)
                 },
                 editData(index){
+                    this.edtName = this.people[index].name
+                    this.edtAge = this.people[index].age
                     this.isOnEdit = index
                 },
                 saveEdit(){
