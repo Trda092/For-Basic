@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webtopia</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1 style="background-color: lightyellow; ">This is beginning</h1>
+        <p style="background-color: lightgreen; ">Non paradigm</p>
+        <span style="background-color: wheat; ">Test</span>
+        <br>
+        <br>
+        <input style="background-color: pink; " placeholder="Name"/>
+        <br>
+        <br>
+        <button style="background-color: violet; ">Press</button>
+        <br>
+        <br>
+        <div style="background-color: crimson; color:white">TestText</div> 
+        <br>
+        <br>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+            <tr>
+                <td>Ohm</td>
+                <td>20</td>
+            </tr>
+            <tr>
+                <td>Boss</td>
+                <td>19</td>
+            </tr>
+            <tr>
+                <td>Goten</td>
+                <td>21</td>
+            </tr>
+        <table>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    // DATA HERE
+                }
+            },
+            methods: {
+                // FUNCTION HERE
+            },
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+
+</html>

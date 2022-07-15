@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webtopia</title>
+</head>
+<style>
+    table,th,td{
+        border:1px solid black
+    }
+</style>
+<body>
+    <div id="app">
+        <div>
+        <label>Name: </label>
+        <input type="text" placeholder="Name" v-model="name">&nbsp;
+        <label>Age: </label>
+        <input type="number" placeholder="Age" v-model="age">&nbsp;
+        <button @click="add">Add</button>
+        </div>
+        <br>
+        <div>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Delete</th>
+                <th>Edit</th>
+            </tr>
+            <tr v-for="(person,index) in people">
+                <td v-if="index!=isOnEdit">{{person.name}}</td>
+                <td v-else><input type="text" placeholder="Name" v-model="edtName"></td>
+                <td v-if="index!=isOnEdit">{{person.age}}</td>
+                <td v-else><input type="number" placeholder="Age" v-model="edtAge"></td>
+                <td><button v-on:click="deleteData(index)">DEL</button></td>
+                <td v-if="index!=isOnEdit"><button v-on:click="editData(index)">Edit</button></td>
+                <td v-else><button v-on:click="saveEdit">Save</button></td>
+            </tr>
+        </table>
+    </div>
+        <div><h2>{{onTimeData}}</h2></div>
+        <div><h2>Average Age {{avgAge}}</h2></div>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    people:[{name:'Ruby', age:20}, {name:'Guava', age:18}, {name:'Boss', age:19}],
+                    name:'',
+                    edtName:'',
+                    edtAge:'',
+                    isOnEdit:-1,
+                    age:0,
+                    sumAge:0
+                }
+            },
+            methods: {
+                add(){
+                    this.people.push({name:this.name, age:this.age})
+                },
+                deleteData(index){
+                    //console.log(delete this.people[index])
+                    this.people.splice(index,1)
+                },
+                editData(index){
+                    this.isOnEdit = index
+                },
+                saveEdit(){
+                    this.people[this.isOnEdit].name = this.edtName
+                    this.people[this.isOnEdit].age = this.edtAge
+                    this.isOnEdit = -1
+                    //console.log(this.people)
+                }
+            },
+            computed:{
+                onTimeData(){
+                    return 'Would you like to insert '+this.name+' to block of contents?'
+                },
+                avgAge(){
+                    this.sumAge = 0
+                    for (let i=0;i<this.people.length;i++){
+                        this.sumAge += this.people[i].age
+                    }
+                    return this.sumAge/this.people.length
+                }
+            }
+        });
+
+        app.mount('#app');
+    </script>
+    
+</body>
+
+</html>

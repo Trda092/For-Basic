@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webtopia</title>
+</head>
+
+<body>
+    <div id="app">
+        <button style="background-color: skyblue;color:black " v-on:click="incs">multiply</button>
+        <button style="background-color: crimson;color:white " v-on:click="dcs">divide</button>
+        <br>
+        <br>
+        <h1>Number now  {{number}} and this when you use return on methods  {{dcs()}}</h1> 
+        <p>Summary of number now  {{sumOfAllNumber}}</p>
+
+        
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    number:20,
+                    sum:0
+                }
+            },
+            methods: {
+                incs(){
+                    this.number*=2 //20-->40
+                    // return this.number*2 โดยทั่วไปจะไม่เขียนแบบนี้เพราะเราเปลี่ยนค่าได้โดยตรง
+                },
+                dcs(){
+                    return this.number/3
+                }
+            },
+            computed:{ //ทำการคำนวณโดยอันโนมัติเมื่อเกิดการเปลี่ยนแปลงใดๆก็ตาม execute ตลอดเวลา
+                sumOfAllNumber(){
+                    this.sum+=this.number
+                    return this.sum
+                }
+            }
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+
+</html>
